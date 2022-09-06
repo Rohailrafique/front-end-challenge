@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import SideBarOption from './SideBarOption';
 
 
-function SideBar() {
+function SideBar({title}) {
   return (
     <SideBarContainer>
         <SideBarHeader>
                 <SideBarInfo>
-                        <h2>Username</h2>
+                        <h2>Cohort name</h2>
+                        <h3>username</h3>
                 </SideBarInfo>
         </SideBarHeader>
-
+    <SideBarOption />
     </SideBarContainer>
   )
 }
@@ -33,4 +35,17 @@ const SideBarHeader = styled.div`
 `
 
 const SideBarInfo = styled.div`
+    flex: 1;
+
+    > h2 {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    > h3 {
+        display: flex;
+        font-size: 15px;
+        font-weight: 400;
+        align-items: center;
+    }
 `
