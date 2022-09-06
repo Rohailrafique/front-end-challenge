@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import SideBarOption from './SideBarOption';
-
 
 function SideBar({title}) {
   return (
     <SideBarContainer>
         <SideBarHeader>
-                <SideBarInfo>
+                <SideBarHeaderInfo>
                         <h2>Cohort name</h2>
                         <h3>username</h3>
-                </SideBarInfo>
+                </SideBarHeaderInfo>
         </SideBarHeader>
-    <SideBarOption />
+        <SideBarChannelOption><h2>Channels</h2><h1>+</h1>
+      </SideBarChannelOption>
+        <SideBarUsersOption> <h2>Users</h2><h1>+</h1></SideBarUsersOption>
     </SideBarContainer>
   )
 }
@@ -34,7 +34,7 @@ const SideBarHeader = styled.div`
     padding: 13px;
 `
 
-const SideBarInfo = styled.div`
+const SideBarHeaderInfo = styled.div`
     flex: 1;
 
     > h2 {
@@ -47,5 +47,38 @@ const SideBarInfo = styled.div`
         font-size: 15px;
         font-weight: 400;
         align-items: center;
+    }
+`
+
+const SideBarChannelOption = styled.div`
+display: flex;
+    font-size: 15px;
+    align-items: center   ;
+    padding-left: 20px;
+    cursor: pointer;
+
+    :hover {
+        opacity: 0.9
+    }
+
+    > h1 {
+        margin-left: 100px;
+    }
+
+`
+
+const SideBarUsersOption = styled.div`
+display: flex;
+    font-size: 15px;
+    align-items: center   ;
+    padding-left: 20px;
+    cursor: pointer;
+
+    :hover {
+        opacity: 0.9
+    }
+
+    > h1 {
+        margin-left:140px;
     }
 `
