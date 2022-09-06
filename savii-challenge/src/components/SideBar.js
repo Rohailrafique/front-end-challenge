@@ -2,7 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 
 function SideBar({title}) {
-  return (
+
+    const showChannels = () => {
+        
+}
+
+    const addChannels = () => {
+        const channelName = prompt("enter channel name")
+
+        if(channelName) {
+            //add to list of channels to render
+        }
+
+    }
+
+        const showUsers = () => {
+
+        }
+
+  return ( 
     <SideBarContainer>
         <SideBarHeader>
                 <SideBarHeaderInfo>
@@ -10,9 +28,11 @@ function SideBar({title}) {
                         <h3>username</h3>
                 </SideBarHeaderInfo>
         </SideBarHeader>
-        <SideBarChannelOption><h2>Channels</h2><h1>+</h1>
+        <SideBarChannelOption><h2 onClick={showChannels}>Channels</h2><h1 onClick={addChannels}>+</h1>
       </SideBarChannelOption>
-        <SideBarUsersOption> <h2>Users</h2><h1>+</h1></SideBarUsersOption>
+      <hr/>
+        <SideBarUsersOption> <h2 onClick={showUsers}>direct messages</h2></SideBarUsersOption>
+        <hr/>
     </SideBarContainer>
   )
 }
@@ -26,6 +46,7 @@ const SideBarContainer = styled.div`
   border-top: 1px solid white;
   max-width: 260px;
   margin-top: 60px
+
 `
 
 const SideBarHeader = styled.div`
