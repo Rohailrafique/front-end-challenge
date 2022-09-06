@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useDispatch, useSelector} from "react-redux"
+import {increment} from "../redux/channels"
 
-function SideBar({title}) {
+function SideBar() {
+    const {channel} = useSelector((state) => state.channels)
+    const dispatch = useDispatch()
 
-    const showChannels = () => {
-        
-}
+   
+    // const showChannels = () => {}
 
     const addChannels = () => {
         const channelName = prompt("enter channel name")
@@ -28,7 +31,7 @@ function SideBar({title}) {
                         <h3>username</h3>
                 </SideBarHeaderInfo>
         </SideBarHeader>
-        <SideBarChannelOption><h2 onClick={showChannels}>Channels</h2><h1 onClick={addChannels}>+</h1>
+        <SideBarChannelOption><h2 onClick={() => dispatch(increment())}>Channels {channel}</h2><h1 onClick={addChannels}>+</h1>
       </SideBarChannelOption>
       <hr/>
         <SideBarUsersOption> <h2 onClick={showUsers}>direct messages</h2></SideBarUsersOption>
