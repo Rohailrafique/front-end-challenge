@@ -12,15 +12,8 @@ export const channelsSlice = createSlice({
     addNewChannel: (state, action) => {
       console.log(state.channels)
       console.log(action.payload)
-      state.value += action.payload
-
+     state.channelsList.push(action.payload)
     }
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload;
-    // },
   },
 });
 

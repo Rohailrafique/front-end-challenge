@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewChannel} from "../redux/channels";
+import {useState} from "react"
+import ChannelOption from "./ChannelOption";
 
 function SideBar() {
 //   const {channel} = useSelector((state) => state.channels);
-  const channel = useSelector((state) => state.channels.channelsList)
+const [channelArrowClicked, setChannelArrowClicked] = useState(false)
+  const listOfChannels = useSelector((state) => state.channels.channelsList)
   const dispatch = useDispatch();
-  console.log(channel)
+  console.log(listOfChannels)
   // const showChannels = () => {}
 
   const addChannels = () => {
@@ -20,6 +23,11 @@ function SideBar() {
 
   const showUsers = () => {};
 
+  const expandChannels = ( ) => {
+    setChannelArrowClicked(true)
+  }
+
+  console.log(channelArrowClicked)
   return (
     <SideBarContainer>
       <SideBarHeader>
@@ -29,9 +37,12 @@ function SideBar() {
         </SideBarHeaderInfo>
       </SideBarHeader>
       <SideBarChannelOption>
-        <h2>Channels</h2>{channel}
+        <h2 onClick={expandChannels}>⬇️</h2>
+        <h2>Channels</h2>
         <h1 onClick={addChannels}>+</h1>
+        
       </SideBarChannelOption>
+      {channelArrowClicked ? <ChannelOption/> : null}
       <hr />
       <SideBarUsersOption>
         {" "}
@@ -87,7 +98,7 @@ const SideBarChannelOption = styled.div`
   }
 
   > h1 {
-    margin-left: 100px;
+    margin-left: 90px;
   }
 `;
 
