@@ -27,8 +27,7 @@ function SideBar() {
     <SideBarContainer>
       <SideBarHeader>
         <SideBarHeaderInfo>
-          <h2>Cohort name</h2>
-          <h3>username</h3>
+          <h2>Looged in user</h2>
         </SideBarHeaderInfo>
       </SideBarHeader>
       <SideBarChannelOption>
@@ -56,7 +55,7 @@ function SideBar() {
 export default SideBar;
 
 const SideBarContainer = styled.div`
-  background-color: purple;
+  background-color: gray;
   color: white;
   flex: 0.3;
   border-top: 1px solid white;
