@@ -1,33 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewChannel} from "../redux/channels";
-import {useState} from "react"
-import ChannelOption from "./ChannelOption";
+import { addNewChannel , deleteChannels} from "../redux/channels";
+import { useState } from "react";
+// import ChannelOption from "./ChannelOption";
 
 function SideBar() {
-//   const {channel} = useSelector((state) => state.channels);
-const [channelArrowClicked, setChannelArrowClicked] = useState(false)
-  const listOfChannels = useSelector((state) => state.channels.channelsList)
+  const [channelArrowClicked, setChannelArrowClicked] = useState(false);
+  const listOfChannels = useSelector((state) => state.channels.channelsList);
   const dispatch = useDispatch();
-  console.log(listOfChannels)
-  // const showChannels = () => {}
+  console.log(listOfChannels);
 
   const addChannels = () => {
     const channelName = prompt("enter channel name");
-    console.log(channelName)
     if (channelName) {
-      dispatch(addNewChannel(channelName))
+      dispatch(addNewChannel({name: channelName}));
     }
   };
+  
+  const expandChannels = () => {
+    setChannelArrowClicked(!channelArrowClicked);
+  };
 
-  const showUsers = () => {};
-
-  const expandChannels = ( ) => {
-    setChannelArrowClicked(true)
-  }
-
-  console.log(channelArrowClicked)
+  console.log(channelArrowClicked);
   return (
     <SideBarContainer>
       <SideBarHeader>
@@ -40,13 +35,18 @@ const [channelArrowClicked, setChannelArrowClicked] = useState(false)
         <h2 onClick={expandChannels}>⬇️</h2>
         <h2>Channels</h2>
         <h1 onClick={addChannels}>+</h1>
-        
       </SideBarChannelOption>
-      {channelArrowClicked ? <ChannelOption/> : null}
+      {channelArrowClicked
+        ? listOfChannels.map(({name}, index) => {
+            return <div key={index}><h3>{name}</h3> <h3 
+            onClick={() => dispatch(deleteChannels(index))}
+            >
+              -</h3> </div>;
+          })
+        : null}
       <hr />
       <SideBarUsersOption>
-        {" "}
-        <h2 onClick={showUsers}>direct messages</h2>
+        <h2>direct messages</h2>
       </SideBarUsersOption>
       <hr />
     </SideBarContainer>
