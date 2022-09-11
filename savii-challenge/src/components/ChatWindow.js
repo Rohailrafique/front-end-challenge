@@ -2,17 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import InfoIcon from "@mui/icons-material/Info";
 import { useSelector } from "react-redux";
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 
 function ChatWindow() {
+  const selectedChannel = useSelector(
+    (state) => state.channels.selectedChannel.payload
+  );
 
-  const selectedChannel = useSelector((state) => state.channels.selectedChannel.payload);
-  
-  console.log(selectedChannel)
+  console.log(selectedChannel);
 
   return (
-    
     <ChatWindowContainer>
       <Header>
         <HeaderLeft>
@@ -26,12 +26,11 @@ function ChatWindow() {
           </p>
         </HeaderRight>
       </Header>
-      {
-        selectedChannel && selectedChannel.messages.map((message) => (
+      {selectedChannel &&
+        selectedChannel.messages.map((message) => (
           <ChatWindowMessages>
-
             <Stack direction="row" spacing={2}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <Avatar alt="Remy Sharp" src={message.image} />
               <MessageInfo>
                 <h4>
                   <span>date</span>
@@ -40,12 +39,8 @@ function ChatWindow() {
               </MessageInfo>
             </Stack>
           </ChatWindowMessages>
-        ))
-
-      }
+        ))}
     </ChatWindowContainer>
-   
-   
   );
 }
 
@@ -55,17 +50,17 @@ const ChatWindowMessages = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
-`
+`;
 const MessageInfo = styled.div`
   padding-left: 10px;
 
-  >h4 >span{
+  > h4 > span {
     color: gray;
-    font-weight:300;
+    font-weight: 300;
     margin=left: 4px;
-    font-size:10px
+    font-size: 10px;
   }
-`
+`;
 
 const ChatWindowContainer = styled.div`
   flex: 0.7;
@@ -80,14 +75,14 @@ const Header = styled.div`
   border-bottom: 1px solid lightgray;
 `;
 const HeaderLeft = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
   > h4 {
     display: flex;
     text-transform: lowercase;
   }
 `;
 const HeaderRight = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 `;
