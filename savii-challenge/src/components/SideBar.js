@@ -8,8 +8,10 @@ import { useState } from "react";
 function SideBar() {
   const [channelArrowClicked, setChannelArrowClicked] = useState(false);
   const listOfChannels = useSelector((state) => state.channels.channelsList);
+  const mockUser = useSelector((state) => state.user)
   const dispatch = useDispatch();
-  console.log(listOfChannels);
+
+  console.log(mockUser)
 
   const addChannels = () => {
     const channelName = prompt("enter channel name");
@@ -22,14 +24,8 @@ function SideBar() {
     setChannelArrowClicked(!channelArrowClicked);
   };
 
-  console.log(channelArrowClicked);
   return (
     <SideBarContainer>
-      <SideBarHeader>
-        <SideBarHeaderInfo>
-          <h2>Looged in user</h2>
-        </SideBarHeaderInfo>
-      </SideBarHeader>
       <SideBarChannelOption>
         <h2 onClick={expandChannels}>⬇️</h2>
         <h2>Channels</h2>
@@ -45,7 +41,10 @@ function SideBar() {
         : null}
       <hr />
       <SideBarUsersOption>
-        <h2>direct messages</h2>
+        <h2>Direct messages</h2>
+      </SideBarUsersOption>
+      <SideBarUsersOption>
+        <h2>{mockUser.name}</h2>
       </SideBarUsersOption>
       <hr />
     </SideBarContainer>
@@ -61,28 +60,6 @@ const SideBarContainer = styled.div`
   border-top: 1px solid white;
   max-width: 260px;
   margin-top: 60px;
-`;
-
-const SideBarHeader = styled.div`
-  display: flex;
-  border-bottom: 1px solid white;
-  padding: 13px;
-`;
-
-const SideBarHeaderInfo = styled.div`
-  flex: 1;
-
-  > h2 {
-    font-size: 20px;
-    font-weight: 400;
-  }
-
-  > h3 {
-    display: flex;
-    font-size: 15px;
-    font-weight: 400;
-    align-items: center;
-  }
 `;
 
 const SideBarChannelOption = styled.div`
