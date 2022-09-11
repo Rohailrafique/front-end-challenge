@@ -13,7 +13,6 @@ export const channelsSlice = createSlice({
      state.channelsList.push(action.payload) 
     },
     deleteChannels: (state, {payload}) => {
-      console.log(payload)
       state.channelsList.splice(payload, 1)       }
   },
 });

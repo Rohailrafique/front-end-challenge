@@ -2,23 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewChannel, deleteChannels } from "../redux/channels";
+import { deleteUsers} from "../redux/mockUser";
 import { useState } from "react";
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { DeleteForever } from "@mui/icons-material";
-
-// import ChannelOption from "./ChannelOption";
 
 function SideBar() {
   const [channelArrowClicked, setChannelArrowClicked] = useState(false);
   const [directMessagesArrowClicked, setDirectMessagesArrowClicked] =
     useState(false);
   const listOfChannels = useSelector((state) => state.channels.channelsList);
-  const mockUser = useSelector((state) => state.user);
+  const mockUsers = useSelector((state) => state.users);
   const dispatch = useDispatch();
-
-  console.log(mockUser);
-  console.log(directMessagesArrowClicked);
 
   const addChannels = () => {
     const channelName = prompt("enter channel name");
@@ -37,34 +33,54 @@ function SideBar() {
 
   return (
     <SideBarContainer>
-      <SideBarChannelOption>
-        <h2 onClick={expandChannels}><ArrowCircleDownIcon/></h2>
+      <SideBarOption>
+        <h2 onClick={expandChannels}>
+          <ArrowCircleDownIcon />
+        </h2>
         <h2>Channels</h2>
-        <h1 onClick={addChannels}><AddCircleIcon/></h1>
-      </SideBarChannelOption>
+        <h1 onClick={addChannels}>
+          <AddCircleIcon />
+        </h1>
+      </SideBarOption>
+
       {channelArrowClicked
         ? listOfChannels.map(({ name }, index) => {
             return (
-              <div key={index}>
-                <h3>{name}</h3>
-                <h3 onClick={() => dispatch(deleteChannels(index))}><DeleteForever/></h3>
-              </div>
+              <SideBarOption>
+                <div key={index}>
+                  <h3>{name}</h3>
+                  <h3 onClick={() => dispatch(deleteChannels(index))}>
+                    <DeleteForever />
+                  </h3>
+                </div>
+              </SideBarOption>
+            );
+          })
+        : null}
+
+      <hr />
+      <SideBarOption>
+        <h2 onClick={directMessagesClicked}>
+          <ArrowCircleDownIcon />
+        </h2>
+        <h2>Direct Messages</h2>
+      </SideBarOption>
+      {directMessagesArrowClicked
+        ? mockUsers.usersList.map(({ name, id }, index) => {
+            return (
+              <SideBarOption>
+                <div key={id}>
+                <h1>{name}</h1>
+                <h3 onClick={() => dispatch(deleteUsers(index))}>
+                    <DeleteForever />
+                  </h3>
+                </div>
+              </SideBarOption>
             );
           })
         : null}
       <hr />
-      <SideBarUsersOption>
-        <h2 onClick={directMessagesClicked}><ArrowCircleDownIcon/></h2>
-        <h2>Direct Messages</h2>
-      </SideBarUsersOption>
-     
-
-      <SideBarUsersOption>
-        <h2>{directMessagesArrowClicked ? mockUser.name : null}</h2>
-      </SideBarUsersOption>
-      <hr />
     </SideBarContainer>
-
   );
 }
 
@@ -76,10 +92,10 @@ const SideBarContainer = styled.div`
   flex: 0.3;
   border-top: 1px solid white;
   max-width: 260px;
-  margin-top: 60px;
+  margin-top: 76px;
 `;
 
-const SideBarChannelOption = styled.div`
+const SideBarOption = styled.div`
   display: flex;
   font-size: 15px;
   align-items: center;
@@ -93,20 +109,5 @@ const SideBarChannelOption = styled.div`
   > h1 {
     margin-left: 90px;
   }
-`;
 
-const SideBarUsersOption = styled.div`
-  display: flex;
-  font-size: 15px;
-  align-items: center;
-  padding-left: 20px;
-  cursor: pointer;
-
-  :hover {
-    opacity: 0.9;
-  }
-
-  > h1 {
-    margin-left: 140px;
-  }
 `;

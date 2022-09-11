@@ -3,11 +3,11 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import channelsReducer from "./channels";
-import mockUserReducer from "./mockUser"
+import mockUsersReducer from "./mockUser"
 
 export default configureStore({
   reducer: {
     channels: channelsReducer,
-    user: mockUserReducer,
+    users: mockUsersReducer,
   },
 });
