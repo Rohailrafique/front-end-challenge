@@ -1,53 +1,70 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewChannel , deleteChannels} from "../redux/channels";
+import { addNewChannel, deleteChannels } from "../redux/channels";
 import { useState } from "react";
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { DeleteForever } from "@mui/icons-material";
+
 // import ChannelOption from "./ChannelOption";
 
 function SideBar() {
   const [channelArrowClicked, setChannelArrowClicked] = useState(false);
+  const [directMessagesArrowClicked, setDirectMessagesArrowClicked] =
+    useState(false);
   const listOfChannels = useSelector((state) => state.channels.channelsList);
-  const mockUser = useSelector((state) => state.user)
+  const mockUser = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  console.log(mockUser)
+  console.log(mockUser);
+  console.log(directMessagesArrowClicked);
 
   const addChannels = () => {
     const channelName = prompt("enter channel name");
     if (channelName) {
-      dispatch(addNewChannel({name: channelName}));
+      dispatch(addNewChannel({ name: channelName }));
     }
   };
-  
+
   const expandChannels = () => {
     setChannelArrowClicked(!channelArrowClicked);
+  };
+
+  const directMessagesClicked = () => {
+    setDirectMessagesArrowClicked(!directMessagesArrowClicked);
   };
 
   return (
     <SideBarContainer>
       <SideBarChannelOption>
-        <h2 onClick={expandChannels}>⬇️</h2>
+        <h2 onClick={expandChannels}><ArrowCircleDownIcon/></h2>
         <h2>Channels</h2>
-        <h1 onClick={addChannels}>+</h1>
+        <h1 onClick={addChannels}><AddCircleIcon/></h1>
       </SideBarChannelOption>
       {channelArrowClicked
-        ? listOfChannels.map(({name}, index) => {
-            return <div key={index}><h3>{name}</h3> <h3 
-            onClick={() => dispatch(deleteChannels(index))}
-            >
-              -</h3> </div>;
+        ? listOfChannels.map(({ name }, index) => {
+            return (
+              <div key={index}>
+                <h3>{name}</h3>
+                <h3 onClick={() => dispatch(deleteChannels(index))}><DeleteForever/></h3>
+              </div>
+            );
           })
         : null}
       <hr />
       <SideBarUsersOption>
-        <h2>Direct messages</h2>
+        <h2 onClick={directMessagesClicked}><ArrowCircleDownIcon/></h2>
+        <h2>Direct Messages</h2>
       </SideBarUsersOption>
+     
+
       <SideBarUsersOption>
-        <h2>{mockUser.name}</h2>
+        <h2>{directMessagesArrowClicked ? mockUser.name : null}</h2>
       </SideBarUsersOption>
       <hr />
     </SideBarContainer>
+
   );
 }
 
