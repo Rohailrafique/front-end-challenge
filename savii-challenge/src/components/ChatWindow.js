@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import InfoIcon from "@mui/icons-material/Info";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
 function ChatWindow() {
 
-
+  const selectedChannel = useSelector((state) => state.channels.selectedChannel.payload);
+  
+  console.log(selectedChannel)
 
   return (
     
@@ -15,7 +17,7 @@ function ChatWindow() {
       <Header>
         <HeaderLeft>
           <h4>
-            <strong>username</strong>
+            <strong>{selectedChannel?.name}</strong>
           </h4>
         </HeaderLeft>
         <HeaderRight>
@@ -24,19 +26,23 @@ function ChatWindow() {
           </p>
         </HeaderRight>
       </Header>
+      {
+        selectedChannel && selectedChannel.messages.map((message) => (
+          <ChatWindowMessages>
 
-      <ChatWindowMessages>
-    <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-      <MessageInfo>
-        <h4>
-          <span>date</span>
-          <p>message</p>
-        </h4>
-      </MessageInfo>
-    </Stack>
-    </ChatWindowMessages>
-    <hr/>
+            <Stack direction="row" spacing={2}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <MessageInfo>
+                <h4>
+                  <span>date</span>
+                  <p>{message}</p>
+                </h4>
+              </MessageInfo>
+            </Stack>
+          </ChatWindowMessages>
+        ))
+
+      }
     </ChatWindowContainer>
    
    
