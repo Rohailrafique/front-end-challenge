@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewChannel, deleteChannels } from "../redux/channels";
-import { deleteUsers} from "../redux/mockUser";
+import { deleteUsers } from "../redux/mockUser";
 import { useState } from "react";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -10,8 +10,7 @@ import { DeleteForever } from "@mui/icons-material";
 
 function SideBar() {
   const [channelArrowClicked, setChannelArrowClicked] = useState(false);
-  const [directMessagesArrowClicked, setDirectMessagesArrowClicked] =
-    useState(false);
+  const [directMessagesArrowClicked, setDirectMessagesArrowClicked] = useState(false);
   const listOfChannels = useSelector((state) => state.channels.channelsList);
   const mockUsers = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -31,6 +30,16 @@ function SideBar() {
     setDirectMessagesArrowClicked(!directMessagesArrowClicked);
   };
 
+  const selectChannel = (id) => {
+      //push id to store
+      
+  }
+
+  const selectUser = () => {  
+    //push user id to store
+  }
+
+
   return (
     <SideBarContainer>
       <SideBarOption>
@@ -44,14 +53,14 @@ function SideBar() {
       </SideBarOption>
 
       {channelArrowClicked
-        ? listOfChannels.map(({ name }, index) => {
+        ? listOfChannels.map(({ name, id }, index) => {
             return (
               <SideBarOption>
                 <div key={index}>
-                  <h3>{name}</h3>
-                  <h3 onClick={() => dispatch(deleteChannels(index))}>
+                  <h3 onClick={selectChannel(id)}>{name}</h3>
+                  <p onClick={() => dispatch(deleteChannels(index))}>
                     <DeleteForever />
-                  </h3>
+                  </p>
                 </div>
               </SideBarOption>
             );
@@ -70,8 +79,8 @@ function SideBar() {
             return (
               <SideBarOption>
                 <div key={id}>
-                <h1>{name}</h1>
-                <h3 onClick={() => dispatch(deleteUsers(index))}>
+                  <h3 onClick={selectUser}>{name}</h3>
+                  <h3 onClick={() => dispatch(deleteUsers(index))}>
                     <DeleteForever />
                   </h3>
                 </div>
@@ -109,5 +118,4 @@ const SideBarOption = styled.div`
   > h1 {
     margin-left: 90px;
   }
-
 `;
