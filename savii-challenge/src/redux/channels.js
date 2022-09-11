@@ -4,8 +4,8 @@ export const channelsSlice = createSlice({
   name: "channels",
   initialState: {
     channelsList: [
-      { id: 1, name: 'general', messages: ["123", "45678"] },
-      { id: 2, name: 'extra', messages: ["extra 1", "extra 2"] }
+      { id: 1, name: 'general', messages: ["test message for channel general", "general channel messages will appear here"] },
+      { id: 2, name: 'extra', messages: ["extra messages to show here", "another message in extra channel"] }
     ],
     selectedChannel: {}
   },

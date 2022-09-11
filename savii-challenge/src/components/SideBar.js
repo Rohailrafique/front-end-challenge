@@ -49,9 +49,9 @@ function SideBar() {
       {channelArrowClicked
         ? listOfChannels.map((item, index) => {
           return (
-            <SideBarOption>
+            <SideBarOption key={item.id}>
               <div
-                key={item.id}>
+                >
                 <h3 onClick={() =>dispatch(setSelectedChannel(item))}>{item.name}</h3>
                 <h3 onClick={() => dispatch(deleteChannels(index))}>
                   <DeleteForever />
@@ -72,8 +72,8 @@ function SideBar() {
       {directMessagesArrowClicked
         ? mockUsers.usersList.map((item, index) => {
           return (
-            <SideBarOption>
-              <div key={item.id}>
+            <SideBarOption key={item.id}>
+              <div >
                 <h1 onClick={() =>dispatch(setSelectedChannel(item))}>{item.name}</h1>
                 <h3 onClick={() => dispatch(deleteUsers(index))}>
                   <DeleteForever />

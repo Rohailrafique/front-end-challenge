@@ -4,11 +4,11 @@ export const mockUserSlice = createSlice({
   name: "mockUsers",
   initialState: {
     usersList: [
-      { id: 1, name: "Cristiano", messages: ["123", "45678"] },
+      { id: 1, name: "Cristiano", messages: ["test message for cristiano", "another test message from cristiano"] },
       {
         id: 2,
         name: "Lionel",
-        messages: ["123bjhbjhbjhbjhbjhbjhbjh", "hbjhbjhbjhbjhb"],
+        messages: ["Test message for lionel", "another test message for the same user"],
       }
     ],
   },
