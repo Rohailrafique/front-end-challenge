@@ -111,7 +111,7 @@ const SideBarOption = styled.div`
   cursor: pointer;
 
   :hover {
-    opacity: 0.9;
+    opacity: 3;
   }
 
   > h1 {

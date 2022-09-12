@@ -28,17 +28,20 @@ function ChatWindow() {
       </Header>
       {selectedChannel &&
         selectedChannel.messages.map((message) => (
-          <ChatWindowMessages>
-            <Stack direction="row" spacing={2}>
-              <Avatar alt="Remy Sharp" src={message.image} />
-              <MessageInfo>
-                <h4>
-                  <span>date</span>
-                  <p>{message}</p>
-                </h4>
-              </MessageInfo>
-            </Stack>
-          </ChatWindowMessages>
+          <>
+            <ChatWindowMessages>
+              <Stack direction="row" spacing={2}>
+                <Avatar alt="Remy Sharp" src={selectedChannel.pic} />
+                <MessageInfo>
+                  <h4>
+                    <span>Timestamp would appear here with real chat</span>
+                    <p>{message}</p>
+                  </h4>
+                </MessageInfo>
+              </Stack>
+            </ChatWindowMessages>
+            <hr />
+          </>
         ))}
     </ChatWindowContainer>
   );

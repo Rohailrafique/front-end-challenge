@@ -11,6 +11,7 @@ export const mockUserSlice = createSlice({
           "test message for cristiano",
           "another test message from cristiano",
         ],
+        pic: "https://cdn.dnaindia.com/sites/default/files/styles/full/public/1395411.jpg"
       },
       {
         id: 2,
@@ -19,6 +20,7 @@ export const mockUserSlice = createSlice({
           "Test message for lionel",
           "another test message for the same user",
         ],
+        pic: "https://pbs.twimg.com/media/EgZ2McaWkAA7CXv.jpg"
       },
     ],
   },
