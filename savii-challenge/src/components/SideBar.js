@@ -95,7 +95,7 @@ function SideBar() {
 export default SideBar;
 
 const SideBarContainer = styled.div`
-  background-color: gray;
+  background-color: #4a154b;
   color: white;
   flex: 0.3;
   border-top: 1px solid white;

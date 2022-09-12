@@ -17,10 +17,12 @@ const Header = styled.div`
   width: 100%;
   align-items: center;
   padding: 10 px 0;
-  background-color: black;
-  border-bottom: 10px;
+  background-color: #4A154B	;
+  border-bottom: 1px solid white;
+  
 
   > h1 {
-    color: gray;
+    margin-left: 600px;
+    color: white;
   }
 `;
